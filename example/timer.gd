@@ -1,5 +1,6 @@
 extends Timer
 
+# Sends a message at a random level every second.
 func timeout() -> void:
 	var key: int = randi() % 4;
 	match key:

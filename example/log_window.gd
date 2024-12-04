@@ -15,7 +15,15 @@ const COLOR_WARN: String = "#fab74a";
 const COLOR_ERROR: String = "#ff5050";
 
 func _ready() -> void:
+	# Apply custom formatting per priority. (Optional)
+	Log.FORMAT_PRINT = "[{LOG_TIME}] - {LOG_TEXT}";
+	Log.FORMAT_INFO = "[{LOG_TIME}] - {LOG_TEXT}";
+	Log.FORMAT_WARN = "[{LOG_TIME}] {LOG_SOURCE} - {LOG_TEXT}";
+	Log.FORMAT_ERROR = "[{LOG_TIME}] {LOG_STACK} - {LOG_TEXT}";
+	
+	# Connect the Log message signal
 	Log.on_message.connect(OnLogMessage);
+	
 	# If the UI is loaded after some messages, you can use GetHistory to add previous messages
 	for item: Log.LogItem in Log.GetHistory():
 		OnLogMessage(item);
