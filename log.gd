@@ -17,6 +17,9 @@ signal on_message(item: LogItem);
 
 enum LogPriority{ PRINT, INFO, WARN, ERROR };
 
+const DEFAULT_FORMAT: String = "[%T] %D - %M";
+var FORMAT_STRING: String = DEFAULT_FORMAT;
+
 const MSG_PRINT: LogPriority = LogPriority.PRINT;
 const MSG_INFO: LogPriority = LogPriority.INFO;
 const MSG_WARN: LogPriority = LogPriority.WARN;

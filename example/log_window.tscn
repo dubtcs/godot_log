@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnwovfv200ljr"]
+
+[ext_resource type="Script" path="res://example/log_window.gd" id="1_p0h01"]
+[ext_resource type="Script" path="res://example/timer.gd" id="2_4l77d"]
+
+[node name="LogWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p0h01")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("2_4l77d")
+
+[connection signal="child_entered_tree" from="MarginContainer/VBoxContainer/ScrollContainer/Content" to="." method="AdjustScroll"]
+[connection signal="timeout" from="Timer" to="Timer" method="timeout"]
