@@ -39,6 +39,8 @@ Log.FORMAT_PRINT = "[{LOG_TIME}] - {LOG_TEXT}";
 Log.FORMAT_ERROR = "[{LOG_TIME}] {LOG_STACK} - {LOG_TEXT}";
 ```
 
+All message functions have an optional paramater, ```context```, when supplied labels the message in said context. This can be used to filter select messages based on category.
+
 The class has one signal, ```on_message```, which dispatches each time any message is sent. You can hook into this to do something with said messages as they come through.
 
 ```
@@ -56,19 +58,19 @@ func OnMessage(item: Log.LogItem) -> void:
 
 ## Functionality
 
-### `Print(content: Variant) -> void`
+### `Print(content: Variant, context: String = EMPTY_STRING) -> void`
 
 Takes any argument and stores it as text with a PRINT priority. Prints this message to the godot console.
 
-### `Info(content: Variant) -> void`
+### `Info(content: Variant, context: String = EMPTY_STRING) -> void`
 
 Takes any argument and stores it as text with an INFO priority. Prints this message to the godot console.
 
-### `Warn(content: Variant) -> void`
+### `Warn(content: Variant, context: String = EMPTY_STRING) -> void`
 
 Takes any argument and stores it as text with a WARN priority. Prints this message to the godot console.
 
-### `Error(content: Variant) -> void`
+### `Error(content: Variant, context: String = EMPTY_STRING) -> void`
 
 Takes any argument and stores it as text with an ERROR priority. **Prints an error to the godot console.**
 
@@ -90,6 +92,7 @@ Internal class used to storing messages and their priority/type. This is sent wi
 
 ```
 class LogItem:
-    var text: String;
-    var priority: LogPriority;
+    var text: String; ## Content of the message
+    var priority: LogPriority; ## Priority of the message
+    var context: String; ## Context of the message, if supplied. (OPTIONAL)
 ```

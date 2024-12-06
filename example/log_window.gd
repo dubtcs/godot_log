@@ -16,7 +16,7 @@ const COLOR_ERROR: String = "#ff5050";
 
 func _ready() -> void:
 	# Apply custom formatting per priority. (Optional)
-	Log.FORMAT_PRINT = "[{LOG_TIME}] - {LOG_TEXT}";
+	Log.FORMAT_PRINT = "[{LOG_TIME}] {LOG_CONTEXT} {LOG_TEXT}";
 	Log.FORMAT_INFO = "[{LOG_TIME}] - {LOG_TEXT}";
 	Log.FORMAT_WARN = "[{LOG_TIME}] {LOG_SOURCE} - {LOG_TEXT}";
 	Log.FORMAT_ERROR = "[{LOG_TIME}] {LOG_STACK} - {LOG_TEXT}";
